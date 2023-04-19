@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Plantario</string>
+    <string name="app_list">List of plants</string>
+    <string name="app_add">Add new plant</string>
+    <string name="app_plant_details">Plant Details</string>
+
+    <string name="app_title">Manage Your Plants with Ease!</string>
+    <string name="app_my_plantario">My Plantario</string>
+    <string name="app_new_plant">Add New Plant</string>
+    <string name="app_interval">Watering interval every</string>
+    <string name="app_day"> days</string>
+
+    <string name="app_add_title">Add a New Plant!</string>
+    <string name="app_add_name">Plant Name</string>
+    <string name="app_add_species">Plant Species</string>
+    <string name="app_add_wInterval">Watering Interval (days)</string>
+    <string name="app_add_button">Add Plant</string>
+    <string name="app_add_history">Watering History</string>
+
+    <string name="app_watered_history">History</string>
+    <string name="app_set_reminder">Set Reminder</string>
+    <string name="reminder_time_hint">Select Time</string>
+    <string name="take_photo">Take a Photo</string>
+
+    <string name="app_plant_water">Water</string>
+    <string name="app_plant_delete">Delete Plant</string>
+
+    //PlantDetailsActivity
+    <string name="days_to_water">Water in %1$d days</string>
+    <string name="days_from_water">Should have been watered %1$d days ago!</string>
+    <string name="days_to_water_today">Water today!</string>
+    <string name="days_last_watered">Last watered %1$d days ago</string>
+    <string name="days_last_watered_today">Watered today!</string>
+    <string name="days_last_watered_not">Not watered yet!</string>
+
+    <string name="app_add_plant_success">Plant added successfully!</string>
+    <string name="app_add_plant_error">Please enter valid data!</string>
+
+    <string name="app_notification_title">Time to water your plant!</string>
+
+    <string name="app_toast_delete">Plant deleted!</string>
+    <string name="app_toast_notification_success">Reminder set successfully</string>
+    <string name="app_list_plant">Name               |               Species</string>
+
+
+</resources>

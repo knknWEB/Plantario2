@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:onClick="onPlantClicked">
+
+    <TextView
+        android:id="@+id/to_water_name"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:text="Plant name"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/to_water_species"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Plant species"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/to_water_lastWD"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Plant species"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/to_water_watering_interval"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Plant species"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/to_water_since_last"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Plant species"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<resources>
+
+    <string name="app_name">Plantario</string>
+    <string name="app_list">Lista roślin</string>
+    <string name="app_add">Dodawanie</string>
+    <string name="app_plant_details">Szczegóły rośliny</string>
+
+    <string name="app_title">Centrum zarządzania Twoimi roślinami!</string>
+    <string name="app_my_plantario">Moje Plantario</string>
+    <string name="app_new_plant">Dodaj nową roślinę</string>
+    <string name="app_interval">Interwał podlewania co </string>
+    <string name="app_day"> dni</string>
+
+    <string name="app_add_title">Dodaj nową roślinę!</string>
+    <string name="app_add_name">Nazwa rośliny</string>
+    <string name="app_add_species">Gatunek rośliny</string>
+    <string name="app_add_wInterval">Interwał podlewania (dni)</string>
+    <string name="app_add_button">Dodaj roślinę</string>
+    <string name="app_add_history">Historia podlewania</string>
+
+    <string name="app_watered_history">Historia</string>
+    <string name="app_set_reminder">Ustaw przypomnienie</string>
+    <string name="reminder_time_hint">Wybierz czas</string>
+    <string name="take_photo">Zrób zdjęcie</string>
+
+    <string name="app_plant_water">Podlej</string>
+    <string name="app_plant_delete">Usuń roślinę</string>
+
+    //PlantDetailsActivity
+    <string name="days_to_water">Należy podlać za: %1$d dni</string>
+    <string name="days_from_water">Należało podlać: %1$d dni temu!</string>
+    <string name="days_to_water_today">Należy podlać dzisiaj!</string>
+    <string name="days_last_watered">Ostatnio podlano: %1$d dni temu</string>
+    <string name="days_last_watered_today">Podlano dzisiaj!</string>
+    <string name="days_last_watered_not">Nie podlano jeszcze!</string>
+
+    <string name="app_add_plant_success">Poprawnie dodano!</string>
+    <string name="app_add_plant_error">Wprowadź poprawne dane!</string>
+
+    <string name="app_notification_title">Czas podlać roślinę!</string>
+
+    <string name="app_toast_delete">Usunięto roślinę!</string>
+    <string name="app_toast_notification_success">Przypomnienie zostało ustawione</string>
+    <string name="app_list_plant">Nazwa               |               Gatunek</string>
+
+
+</resources>
