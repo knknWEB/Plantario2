@@ -19,7 +19,6 @@
 
     <style name="AppTheme.NoActionBar" parent="Theme.Plantario2">
         <item name="windowNoTitle">true</item>
-        <item name="android:background">@color/background_color_dark</item>
     </style>
 
 

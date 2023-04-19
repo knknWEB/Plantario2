@@ -26,8 +26,8 @@
     <string name="app_plant_delete">Delete Plant</string>
 
     //PlantDetailsActivity
-    <string name="days_to_water">Water in %1$d days</string>
-    <string name="days_from_water">Should have been watered %1$d days ago!</string>
+    <string name="days_to_water">Water in %1$d days (%2$s)</string>
+    <string name="days_from_water">Should have been watered %1$d days ago (%2$s)!</string>
     <string name="days_to_water_today">Water today!</string>
     <string name="days_last_watered">Last watered %1$d days ago</string>
     <string name="days_last_watered_today">Watered today!</string>

@@ -9,7 +9,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
@@ -19,9 +18,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.plantario2.model.Plant
 import com.example.plantario2.model.Watered
 import kotlinx.coroutines.Dispatchers
@@ -30,9 +26,9 @@ import kotlinx.coroutines.withContext
 import java.util.*
 import com.example.plantario2.dao.WateredDAO
 import com.example.plantario2.database.PlantDatabase
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.GlobalScope
 import java.io.File
+import java.text.SimpleDateFormat
 
 class PlantDetailsActivity : AppCompatActivity() {
     private lateinit var plantRepository: PlantRepository
@@ -86,7 +82,7 @@ class PlantDetailsActivity : AppCompatActivity() {
         val plantSpeciesTextView = findViewById<TextView>(R.id.plant_species_textview)
         val wateringIntervalTextView = findViewById<TextView>(R.id.watering_interval_textview)
         val lastWateredTextView = findViewById<TextView>(R.id.lastWateredTextView)
-        val plant_to_water = findViewById<TextView>(R.id.plant_to_water)
+
 
         // znajdź inne widoki
 
@@ -95,20 +91,7 @@ class PlantDetailsActivity : AppCompatActivity() {
         plantSpeciesTextView.text = plantSpecies
         // ustaw inne informacje
 
-        // dodaj OnClickListener do przycisku "Podlej"
-        val waterButton = findViewById<Button>(R.id.water_button)
-        waterButton.setOnClickListener {
-            val currentDate = Calendar.getInstance().time
 
-            val watered = Watered(plantId =plantId, wateredDate = currentDate)
-            GlobalScope.launch(Dispatchers.IO) {
-                wateredDao.insert(watered)
-
-            }
-            finish()
-
-            Toast.makeText(this, "Podlano $plantName dnia $currentDate", Toast.LENGTH_SHORT).show()
-        }
         val historyButton = findViewById<Button>(R.id.historyButton)
         historyButton.setOnClickListener {
             val intent = Intent(this, com.example.plantario2.WateringHistoryActivity::class.java)
@@ -145,16 +128,23 @@ class PlantDetailsActivity : AppCompatActivity() {
                 if (lastWateredDate != null) {
                     val currentDate = Calendar.getInstance().time
                     val diff = currentDate.time - lastWateredDate?.wateredDate?.time!! ?: 0
+
+                    val diffInMillis = currentDate.time + wateringInterval * 24 * 60 * 60 * 1000
+                    val diffDate = Date(diffInMillis)
+                    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+                    val diffFormatted = dateFormat.format(diffDate)
+
+
                     val days = diff / (1000 * 60 * 60 * 24)
                     val plantToWater = findViewById<TextView>(R.id.plant_to_water)
                     val daysToWater=wateringInterval-days
                     if (daysToWater>0){
-                        val text = resources.getString(R.string.days_to_water, daysToWater)
+                        val text = resources.getString(R.string.days_to_water, daysToWater, diffFormatted)
                         plantToWater.text = text
 
                     }
                     else if(daysToWater<0){
-                        val text = resources.getString(R.string.days_from_water, daysToWater)
+                        val text = resources.getString(R.string.days_from_water, daysToWater, diffFormatted)
                         plantToWater.text = text
                     }
                     else{
@@ -174,8 +164,6 @@ class PlantDetailsActivity : AppCompatActivity() {
                         val text = resources.getString(R.string.days_last_watered_not)
                         lastWateredTextView.text = text
                     }
-
-
 
                 }
 
@@ -198,7 +186,24 @@ class PlantDetailsActivity : AppCompatActivity() {
         }
 
 
+        // dodaj OnClickListener do przycisku "Podlej"
+        val waterButton = findViewById<Button>(R.id.water_button)
+        waterButton.setOnClickListener {
+            val currentDate = Calendar.getInstance().time
 
+            val watered = Watered(plantId =plantId, wateredDate = currentDate)
+            GlobalScope.launch(Dispatchers.IO) {
+                wateredDao.insert(watered)
+
+            }
+            finish()
+
+            Toast.makeText(this, "Podlano $plantName dnia $currentDate", Toast.LENGTH_SHORT).show()
+
+           //jak to wywołać?
+            createAutoNotification(plantId,wateringInterval)
+
+        }
     }
 
 
@@ -231,7 +236,8 @@ class PlantDetailsActivity : AppCompatActivity() {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, pendingIntent)
 
-        Toast.makeText(this, getString(R.string.app_toast_notification_success), Toast.LENGTH_SHORT).show()    }
+        Toast.makeText(this, getString(R.string.app_toast_notification_success), Toast.LENGTH_SHORT).show()
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -243,8 +249,8 @@ class PlantDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
-                return true
+                val intent = Intent(this, com.example.plantario2.ListActivity::class.java)
+                startActivity(intent)
             }
             R.id.delete_plant -> {
                 lifecycleScope.launch {
@@ -272,6 +278,31 @@ class PlantDetailsActivity : AppCompatActivity() {
 
         val image = File(applicationContext.filesDir, "$plantName.jpg")
         return FileProvider.getUriForFile(applicationContext,"com.example.plantario2.fileprovider", image)
+    }
+
+    private fun createAutoNotification(plantId: Int, daysToWater: Int) {
+        val rnds = (0..1000).random()
+
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.set(Calendar.HOUR_OF_DAY, 10)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        calendar.add(Calendar.DATE, daysToWater)
+
+        val notificationIntent = Intent(this, NotificationReceiver::class.java)
+        notificationIntent.putExtra("plantName", intent.getStringExtra("plantName"))
+        notificationIntent.putExtra("rnds",rnds)
+
+        val pendingIntent2 = PendingIntent.getBroadcast(this, rnds, notificationIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.set(AlarmManager.RTC_WAKEUP,   calendar.timeInMillis, pendingIntent2)
+
+        Toast.makeText(this, getString(R.string.app_toast_notification_success), Toast.LENGTH_SHORT).show()
+
     }
 
 

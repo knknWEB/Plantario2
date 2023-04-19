@@ -27,8 +27,8 @@
     <string name="app_plant_delete">Usuń roślinę</string>
 
     //PlantDetailsActivity
-    <string name="days_to_water">Należy podlać za: %1$d dni</string>
-    <string name="days_from_water">Należało podlać: %1$d dni temu!</string>
+    <string name="days_to_water">Należy podlać za: %1$d dni (%2$s)</string>
+    <string name="days_from_water">Należało podlać: %1$d dni temu (%2$s)!</string>
     <string name="days_to_water_today">Należy podlać dzisiaj!</string>
     <string name="days_last_watered">Ostatnio podlano: %1$d dni temu</string>
     <string name="days_last_watered_today">Podlano dzisiaj!</string>
