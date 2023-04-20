@@ -1,4 +1,4 @@
-package com.example.plantario2
+package com.example.plantario2.Repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData

@@ -1,10 +1,11 @@
-package com.example.plantario2
+package com.example.plantario2.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plantario2.R
 import com.example.plantario2.model.Watered
 
 class WateringHistoryAdapter(private val wateringList: List<Watered>) : RecyclerView.Adapter<WateringHistoryAdapter.ViewHolder>() {

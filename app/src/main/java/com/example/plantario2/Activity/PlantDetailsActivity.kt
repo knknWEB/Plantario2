@@ -1,4 +1,4 @@
-package com.example.plantario2
+package com.example.plantario2.Activity
 
 import android.app.AlarmManager
 import android.app.DatePickerDialog
@@ -18,6 +18,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.plantario2.NotificationReceiver
+import com.example.plantario2.Repository.PlantRepository
+import com.example.plantario2.R
 import com.example.plantario2.model.Plant
 import com.example.plantario2.model.Watered
 import kotlinx.coroutines.Dispatchers
@@ -94,7 +97,7 @@ class PlantDetailsActivity : AppCompatActivity() {
 
         val historyButton = findViewById<Button>(R.id.historyButton)
         historyButton.setOnClickListener {
-            val intent = Intent(this, com.example.plantario2.WateringHistoryActivity::class.java)
+            val intent = Intent(this, WateringHistoryActivity::class.java)
 
             intent.putExtra("plantId", plant.id)
             startActivity(intent)
@@ -249,7 +252,7 @@ class PlantDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                val intent = Intent(this, com.example.plantario2.ListActivity::class.java)
+                val intent = Intent(this, ListActivity::class.java)
                 startActivity(intent)
             }
             R.id.delete_plant -> {

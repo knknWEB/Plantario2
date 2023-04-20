@@ -10,7 +10,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import android.provider.Settings.System.getString
+import com.example.plantario2.Activity.*
+
 
 
 

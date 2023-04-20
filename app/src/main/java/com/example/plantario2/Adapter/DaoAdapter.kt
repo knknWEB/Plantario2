@@ -1,7 +1,6 @@
-package com.example.plantario2
+package com.example.plantario2.Adapter
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,8 @@ import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plantario2.model.Plant
 import java.io.File
+import com.example.plantario2.Activity.*
+import com.example.plantario2.R
 
 class DaoAdapter(private val listOfPlant: List<Plant>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

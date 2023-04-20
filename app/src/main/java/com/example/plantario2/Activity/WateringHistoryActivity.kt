@@ -1,4 +1,4 @@
-package com.example.plantario2
+package com.example.plantario2.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plantario2.R
+import com.example.plantario2.Adapter.WateringHistoryAdapter
 import com.example.plantario2.database.PlantDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
