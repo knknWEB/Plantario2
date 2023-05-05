@@ -15,28 +15,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //znajdujemy przycisk Moje Plantario
+        //Inicjalizacja przycisków Moje Plantario i Dodawania roslin
         val myPlantarioButton = findViewById<Button>(R.id.my_plantario_button)
         val addButton = findViewById<Button>(R.id.add_plant_button)
 
         viewModel=ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(
             PlantViewModel::class.java)
 
-        //tworzymy listener dla kliknięcia przycisku Moje Plantario
+        //Listener dla kliknięcia przycisku Moje Plantario
         myPlantarioButton.setOnClickListener {
-            //tworzymy nową aktywność ListActivity
+            //Tworzona nowa aktywność ListActivity
             val intent = Intent(this, com.example.plantario2.Activity.ListActivity::class.java)
-            //uruchamiamy aktywność
-            startActivity(intent)
+            startActivity(intent)   //uruchomienie
 
 
         }
-        //tworzymy listener dla kliknięcia przycisku Dodaj Roślinę
+        //Listener dla kliknięcia przycisku Dodaj Roślinę
         addButton.setOnClickListener {
-            //tworzymy nową aktywność ListActivity
+            //Tworzona nowa aktywność AddActivity
             val intent2 = Intent(this, AddActivity::class.java)
-            //uruchamiamy aktywność
-            startActivity(intent2)
+            startActivity(intent2)  //uruchomienie
         }
     }
 

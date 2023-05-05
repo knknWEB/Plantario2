@@ -18,21 +18,22 @@ import kotlinx.coroutines.launch
 class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Ustawienie widoku oraz ustawienie wyświetlania pasku nawigacyjnego
         setContentView(R.layout.activity_add)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Inicjalizacja bazy danych
+        //Inicjalizacja bazy danych
         lateinit var plantDao: PlantDAO
         val database = PlantDatabase.getDatabase(this)
         plantDao = database.plantDao()
 
-        //inicjalizacja zmiennych widoku
+        //Inicjalizacja zmiennych widoku
         val buttonAdd = findViewById<Button>(R.id.button_dodaj)
         val edittextName = findViewById<TextView>(R.id.edit_text_nazwa)
         val edittextSpecies = findViewById<TextView>(R.id.edit_text_gatunek)
         val edittextInterval = findViewById<TextView>(R.id.edit_text_interwal)
 
-        // Zapisanie rośliny do bazy danych po kliknięciu przycisku
+        // Zapisanie rośliny do bazy danych po kliknięciu przycisku button_dodaj
         buttonAdd.setOnClickListener {
             val name = edittextName.text.toString().trim()
             val species = edittextSpecies.text.toString().trim()

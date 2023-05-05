@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".PlantDetailsActivity">
+    tools:context=".Activity.PlantDetailsActivity">
 
     <TextView
         android:id="@+id/plant_name_textview"

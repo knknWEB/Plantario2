@@ -11,7 +11,7 @@ import com.example.plantario2.dao.WateredDAO
 import com.example.plantario2.model.Plant
 import com.example.plantario2.model.Watered
 
-@Database(entities = [Plant::class, Watered::class], version = 2)
+@Database(entities = [Plant::class, Watered::class], version = 3)
 @TypeConverters(DateConverter::class) // dodaj konwerter
 
 abstract class PlantDatabase : RoomDatabase() {

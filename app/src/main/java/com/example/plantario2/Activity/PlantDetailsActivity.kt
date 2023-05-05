@@ -79,7 +79,6 @@ class PlantDetailsActivity : AppCompatActivity() {
 
 
 
-
         // wyświetl informacje o roślinie
         val plantNameTextView = findViewById<TextView>(R.id.plant_name_textview)
         val plantSpeciesTextView = findViewById<TextView>(R.id.plant_species_textview)
@@ -122,6 +121,7 @@ class PlantDetailsActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
+                println(plantId)
 
                 plant = plantRepository.getPlantByIdAsync(plantId).await() ?: throw Exception("Plant not found")
 
@@ -194,16 +194,15 @@ class PlantDetailsActivity : AppCompatActivity() {
         waterButton.setOnClickListener {
             val currentDate = Calendar.getInstance().time
 
-            val watered = Watered(plantId =plantId, wateredDate = currentDate)
+            val watered = Watered(plantId = plantId, wateredDate = currentDate)
             GlobalScope.launch(Dispatchers.IO) {
                 wateredDao.insert(watered)
 
             }
             finish()
-
             Toast.makeText(this, "Podlano $plantName dnia $currentDate", Toast.LENGTH_SHORT).show()
 
-           //jak to wywołać?
+            //Wywołanie metody createAutoNotification
             createAutoNotification(plantId,wateringInterval)
 
         }

@@ -42,6 +42,8 @@
     <string name="app_toast_delete">Usunięto roślinę!</string>
     <string name="app_toast_notification_success">Przypomnienie zostało ustawione</string>
     <string name="app_list_plant">Nazwa               |               Gatunek</string>
+    <string name="app_empty_list">Brak roślin w bazie. Dodaj roślinę!</string>
+
 
 
 </resources>

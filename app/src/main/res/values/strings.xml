@@ -41,6 +41,7 @@
     <string name="app_toast_delete">Plant deleted!</string>
     <string name="app_toast_notification_success">Reminder set successfully</string>
     <string name="app_list_plant">Name               |               Species</string>
+    <string name="app_empty_list">No plants in the system. Add a plant first!</string>
 
 
 </resources>
