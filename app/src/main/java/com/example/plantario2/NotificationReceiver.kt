@@ -19,7 +19,10 @@ class NotificationReceiver : BroadcastReceiver() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onReceive(context: Context, intent: Intent) {
         val plantName = intent.getStringExtra("plantName")
-        val plantId = intent.getStringExtra("plantId")
+       //
+        val plantId = intent.getIntExtra("plantId",1)
+        intent.putExtra("plantId", plantId)
+//
 
         val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java) as NotificationManager
         val notificationChannel = NotificationChannel("plantario_channel", "Plantario", NotificationManager.IMPORTANCE_HIGH)
@@ -27,8 +30,9 @@ class NotificationReceiver : BroadcastReceiver() {
 
         val notificationIntent = Intent(context, PlantDetailsActivity::class.java)
         notificationIntent.putExtra("plantName", plantName)
+        notificationIntent.putExtra("plantId", plantId)
 
-        val pendingIntent = PendingIntent.getActivity(context,  0 , intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getActivity(context,  0 , notificationIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notificationId = System.currentTimeMillis().toInt()
         val rnds = (0..1000).random()
@@ -38,7 +42,7 @@ class NotificationReceiver : BroadcastReceiver() {
             .setContentTitle(context.getString(R.string.app_notification_title))
             .setContentText(plantName)
             .setContentIntent(pendingIntent)
-            .setAutoCancel(false)
+            .setAutoCancel(true)
             .build()
 
         notificationManager.notify(rnds, notification)

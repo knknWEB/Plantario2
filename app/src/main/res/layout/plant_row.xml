@@ -14,8 +14,10 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginRight="10pt"
-        android:background="@drawable/circle_shape"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:scaleType="centerCrop"
+
+        app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
 
     <TextView
         android:id="@+id/plant_name_textview"

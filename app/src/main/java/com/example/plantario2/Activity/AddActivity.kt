@@ -13,8 +13,6 @@ import com.example.plantario2.model.Plant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
-
 class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +31,14 @@ class AddActivity : AppCompatActivity() {
         val edittextSpecies = findViewById<TextView>(R.id.edit_text_gatunek)
         val edittextInterval = findViewById<TextView>(R.id.edit_text_interwal)
 
-        // Zapisanie rośliny do bazy danych po kliknięciu przycisku button_dodaj
+        //Zapisanie rośliny do bazy danych po kliknięciu przycisku button_dodaj
         buttonAdd.setOnClickListener {
             val name = edittextName.text.toString().trim()
             val species = edittextSpecies.text.toString().trim()
             val interval = edittextInterval.text.toString().toIntOrNull()
 
-            // Sprawdzenie, czy użytkownik wprowadził poprawne dane
+            //Sprawdzenie, czy użytkownik wprowadził poprawne dane
+            //jeżeli poprawne
             if (name.isNotEmpty() && species.isNotEmpty() && interval != null) {
                 val plant = Plant(name = name, species = species, wateringInterval = interval)
                 GlobalScope.launch(Dispatchers.IO) {
@@ -49,12 +48,13 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.app_add_plant_success), Toast.LENGTH_SHORT).show()
 
             }
+            //jeżeli błędne
             else {
                 Toast.makeText(this, getString(R.string.app_add_plant_error), Toast.LENGTH_SHORT).show()
             }
         }
     }
-    // Funkcja, która obsługuje kliknięcie przycisku wstecz na pasku nawigacji
+    //Funkcja, która obsługuje kliknięcie przycisku wstecz na pasku nawigacji
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

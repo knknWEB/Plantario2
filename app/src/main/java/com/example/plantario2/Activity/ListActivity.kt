@@ -1,5 +1,7 @@
 package com.example.plantario2.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -41,17 +43,29 @@ class ListActivity : AppCompatActivity() {
 
         //Przypisanie adaptera DaoAdapter do obiektu RecyclerView
         listOfPlant.observe(this, Observer { plants ->
-            if (plants.isNotEmpty()) {
+            if (plants.isNotEmpty()) {  //jeżeli lista roślin jest niepusta
                 daoAdapter = DaoAdapter(plants)
                 recyclerView.adapter = daoAdapter
-                progressBar.visibility = View.GONE  // Ukrycie paska postępu, jeśli lista roślin jest niepusta
+                progressBar.visibility = View.GONE  //Ukrycie paska postępu, jeśli lista roślin jest niepusta
             }
-            else {
+            else { //jeżeli lista roślin jest pusta
                 recyclerView.visibility = View.GONE
                 progressBar.visibility = View.GONE
-                findViewById<TextView>(R.id.app_list_nothing).visibility = View.VISIBLE
+                findViewById<TextView>(R.id.app_list_nothing).visibility = View.VISIBLE //Pokazanie tekstu, jeżeli lista roślin jest pusta
             }
         })
+    }
 
+    //Funkcja, która obsługuje kliknięcie przycisku wstecz na pasku nawigacji
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
